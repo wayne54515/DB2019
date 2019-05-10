@@ -13,23 +13,10 @@ require('bootstrap-sass')
 // Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 
-// import Gallery from './components/Gallery.vue'
-// import CardInfo from './components/CardInfo.vue'
 
-// const router = new VueRouter({
-//     mode: 'history',
-//     base: __dirname,
-//     routes: [
-//         {path: '/gallery', component: Gallery},
-//         {path: '/cardInfo/:id', component: CardInfo}
-//     ]
-// })
-
-// new Vue(Vue.util.extend({ router }, App)).$mount('#app')
-
-Vue.component('gallery', require('./components/Gallery.vue'));
-Vue.component('card_info', require('./components/CardInfo.vue'));
-Vue.component('cms', require('./components/CMS.vue'));
+Vue.component('food', require('./components/Food.vue'));
+Vue.component('rank', require('./components/Rank.vue'));
+Vue.component('manage', require('./components/Manage.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -16,14 +16,17 @@
     
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        ToS DataBase
+                        回首頁
                     </a>
                 </div>
     
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/foodmenu') }}">菜單</a></li>
+                        <li><a href="{{ url('/food') }}">菜單</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url('/rank') }}">評分</a></li>
                     </ul>
     
                     <!-- Right Side Of Navbar -->
@@ -40,7 +43,7 @@
     
                                 <ul class="dropdown-menu" role="menu">
                                     @if (Auth::user()->type == "admin")
-                                        <li><a href="/cms"><i class="fa fa-btn"></i>後台管理</a></li>
+                                        <li><a href="/manage"><i class="fa fa-btn"></i>後台管理</a></li>
                                     @endif
                                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                 </ul>

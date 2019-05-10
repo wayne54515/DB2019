@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 // view
 Route::get('/home', 'HomeController@index');
+Route::get('/food', 'FoodController@index');
+Route::get('/rank', 'RankController@index');
+Route::get('/manage', 'ManageController@index');
 
 // auth action
 Route::auth();
