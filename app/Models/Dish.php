@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dish extends BaseModel
 {
-    
+    protected $fillable = [
+        'id', 'dish_id', 'spice'
+    ];
 }

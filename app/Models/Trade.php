@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trade extends BaseModel
 {
-    
+    protected $fillable = [
+        'id', 'food_id', 'user_id', 'number', 'created_at'
+    ];
 }
