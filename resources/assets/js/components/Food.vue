@@ -18,7 +18,7 @@
                 <div class="food_block">
                     <img :src="getIconUrl(food.id)" :style="'width:200px; height:200px;'">
                     <input type="number" min="0" max="99" v-model="food_num[food.id]"/>
-                    <button value="send" @click="addTrade(food.id, food_num[food.id])"><label>加入交易</label></button>
+                    <button value="send" @click="addTrade(food.id, food.name, food_num[food.id])">加入交易</button>
                 </div>
             </li>
         </ul>
@@ -30,10 +30,10 @@
         </div>
         <div slot="body">
             <ul class="trade_content">
-                <li v-for="trade in trade_list" :key="trade.id">
-                    <label>{{trade.food}}</label>
-                    <label>{{trade.num}}</label>
-                    <button @click="removeTrade(trade.id)">取消</button>
+                <li v-for="(trade, trade_index) in trade_list" :key="trade.id">
+                    <label>{{trade.food_name}}</label>
+                    <label>{{trade.number}}</label>
+                    <button @click="removeTrade(trade_index)">取消</button>
                 </li>
             </ul>
         </div>
@@ -103,12 +103,20 @@ export default {
                 });
         },
 
-        addTrade: function(){
-
+        addTrade: function(id, name, num){
+            console.log("success");
+            let self = this;
+            this.new_trade = {
+                food_id: id,
+                food_name: name,
+                number: num,
+            }
+            self.trade_list.push(this.new_trade);
         },
 
-        removeTrade: function(){
-
+        removeTrade: function(index){
+            let self = this;
+            self.trade_list.splice(index, 1);
         },
 
         sendTrade: function(){
@@ -134,6 +142,10 @@ export default {
 </script>
 
 <style>
+    button{
+        cursor: pointer;
+    }
+
     .menu li{
         display: inline-block;
         vertical-align: top;
@@ -151,6 +163,9 @@ export default {
         z-index: -1111;
     }
 
+    .food_type{
+        display: inline-block;
+    }
     .food_type label{
         cursor: pointer;
         margin-right: 20px;
@@ -199,7 +214,14 @@ export default {
         cursor: pointer;
     }
     .trade_body{
-        display:none;
+        display: none;
+    }
+    .trade_content button{
+        float: right;
+    }
+    .trade_content label{
+        margin-top: 3px;
+        margin-bottom: 3px;
     }
 </style>
 
