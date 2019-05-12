@@ -27,15 +27,18 @@
     <modal v-if="trade_model_show" @close="trade_model_show = false" >
         <div slot="header">
             <h3 >交易項目</h3>
+            <input type="number" min="1" max="15" v-model="table_id" width="40px" style="margin-right:3px;"/><label>填入(1~15)桌</label>
         </div>
         <div slot="body">
-            <ul class="trade_content">
-                <li v-for="(trade, trade_index) in trade_list" :key="trade.id">
-                    <label>{{trade.food_name}}</label>
-                    <label>{{trade.number}}</label>
-                    <button @click="removeTrade(trade_index)">取消</button>
-                </li>
-            </ul>
+            <form>
+                <ul class="trade_content">
+                    <li v-for="(trade, trade_index) in trade_list" :key="trade.id">
+                        <label>{{trade.food_name}}</label>
+                        <label>{{trade.number}}</label>
+                        <button @click="removeTrade(trade_index)">取消</button>
+                    </li>
+                </ul>
+            </form>
         </div>
 
         <div slot="footer">
@@ -57,7 +60,8 @@ export default {
             food_type_selected: "dish",
             trade_list: [],
             food_num: [],
-            trade_model_show: false, 
+            trade_model_show: false,
+            table_id: null,
         }
     },
 
@@ -105,6 +109,7 @@ export default {
 
         addTrade: function(id, name, num){
             console.log("success");
+            alert("新增成功");
             let self = this;
             this.new_trade = {
                 food_id: id,
@@ -120,7 +125,26 @@ export default {
         },
 
         sendTrade: function(){
-
+            let self = this;
+            for(var i=0 ; i<self.trade_list.length ; i++){
+                this.new_trade = {
+                food_id: self.trade_list[i].food_id,
+                table_id: self.table_id,
+                number: self.trade_list[i].number,
+                }
+                this.axios.post('/trade', {
+                    trade: this.new_trade
+                })
+                .then(function(response){
+                    self.trade_model_show = false;
+                    console.log(response);
+                    console.log("完成");
+                })
+                .catch(function(response){
+                    console.log(response);
+                });
+            }
+            
         }
     },
 

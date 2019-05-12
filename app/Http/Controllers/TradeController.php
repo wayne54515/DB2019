@@ -49,9 +49,9 @@ class TradeController extends Controller
     public function store(Request $request)
     {
         $input_data = $request->all();
-        $this->tradeService->insertTrade($input_data);
+        $this->tradeService->insertTrade($input_data['trade']);
 
-        return response()->json(['status'=> 'ok'], 200, $this->header);
+        return response()->json(['request'=> $input_data], 200, $this->header);
     }
 
     /**

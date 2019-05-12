@@ -15,9 +15,10 @@ class Trade extends Migration
         Schema::create('trade', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('food_id')->comment("食物ID");
-            $table->integer('user_id')->comment("點餐者ID");
+            $table->integer('table_id')->comment("桌號");
             $table->integer('number')->unsigned()->comment("購買數量");
             $table->dateTime('created_at')->comment("交易時間");
+            $table->dateTime('updated_at');
         });
     }
 
