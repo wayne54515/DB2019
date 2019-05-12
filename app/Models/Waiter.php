@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
 class Waiter extends BaseModel
 {
+    protected $table = 'waiter';
     protected $fillable = [
         'id', 'waiter_id', 'salary'
     ];

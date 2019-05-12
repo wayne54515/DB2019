@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
 class Dish extends BaseModel
 {
+    protected $table = 'dish';
     protected $fillable = [
         'id', 'dish_id', 'spice'
     ];
