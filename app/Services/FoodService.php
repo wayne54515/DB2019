@@ -16,8 +16,14 @@ class FoodService
         $this->food = $food;
     }
 
-    public function getAllFood(){
-        return $this->food->all();
+    public function getAllFood($filter_data){
+        if(!empty($filter_data['type'])){
+            return $this->food->where('type', '=', $filter_data['type'])->get();
+        }
+        else{
+            return $this->food->all();
+        }
+        
     }
 
     public function insertFood($input_data){
