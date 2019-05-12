@@ -23,10 +23,10 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/food') }}">菜單</a></li>
+                        <li><a href="{{ url('/food_menu') }}">菜單</a></li>
                     </ul>
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/rank') }}">評分</a></li>
+                        <li><a href="{{ url('/rank_list') }}">評分</a></li>
                     </ul>
     
                     <!-- Right Side Of Navbar -->
