@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 // view
 Route::get('/home', 'HomeController@index');
-Route::get('/food', 'FoodController@index');
-Route::get('/rank', 'RankController@index');
+Route::get('/food_menu', 'FoodController@food_menu');
+Route::get('/rank_list', 'RankController@rank_list');
 Route::get('/manage', 'ManageController@index');
 
 // auth action
@@ -26,5 +26,25 @@ Route::auth();
 
 // RESTful API
 Route::resource('user', 'UserController', ['only' => [
+    'index', 'edit', 'update', 'store', 'destroy'
+]]);
+
+Route::resource('food', 'FoodController', ['only' => [
+    'index', 'edit', 'update', 'store', 'destroy'
+]]);
+
+Route::resource('employee', 'EmployeeController', ['only' => [
+    'index', 'edit', 'update', 'store', 'destroy'
+]]);
+
+Route::resource('rank', 'RankController', ['only' => [
+    'index', 'edit', 'update', 'store', 'destroy'
+]]);
+
+Route::resource('table', 'TableController', ['only' => [
+    'index', 'edit', 'update', 'store', 'destroy'
+]]);
+
+Route::resource('trade', 'TradeController', ['only' => [
     'index', 'edit', 'update', 'store', 'destroy'
 ]]);
