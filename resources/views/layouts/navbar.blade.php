@@ -43,7 +43,7 @@
     
                                 <ul class="dropdown-menu" role="menu">
                                     @if (Auth::user()->type == "admin")
-                                        <li><a href="/manage"><i class="fa fa-btn"></i>後台管理</a></li>
+                                        <li><a href="{{ url('/manage') }}"><i class="fa fa-btn"></i>後台管理</a></li>
                                     @endif
                                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                 </ul>
