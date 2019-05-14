@@ -8,6 +8,6 @@ class Employee extends BaseModel
 {
     protected $table = 'employee';
     protected $fillable = [
-        'id', 'name', 'sex', 'birthday', 'work_time', 'type'
+        'id', 'name', 'sex', 'work_time', 'work_day', 'salary', 'type'
     ];
 }

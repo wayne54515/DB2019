@@ -39,8 +39,8 @@
         <div slot="body">
             <div class="row"><label>員工名稱</label><input v-model="employee.name"/></div>
             <div class="row"><label>員工性別</label><select v-model="employee.sex">
-                <option v-for="type in sexTypeList" :value="type" :key="type.id">
-                    {{ type }}
+                <option v-for="sex_type in sexTypeList" :value="sex_type" :key="sex_type.id">
+                    {{ sex_type }}
                 </option></select>
             </div>
             <div class="row"><label>工作時數(日)</label><input type="number" min="1" max="24" v-model="employee.work_time" />></div>
@@ -100,7 +100,7 @@ export default {
             this.getEmployeeList()
         },
 
-        getUserList: function(){
+        getEmployeeList: function(){
             let self = this;
 
             this.axios.get('/employee')
@@ -167,6 +167,7 @@ export default {
                 console.log('done');
                 self.employee_list[self.employeeIndex] = self.employee;
                 self.showEmployeeModal = false;
+                self.employee = null;
             }).catch((response) => {
                 console.log(response);
             })
@@ -192,13 +193,13 @@ export default {
     watch: {
         employeeModalState: function(value){
             if(value == "insert"){
-                this.user = {
+                this.employee = {
                     id: "",
                     name: "",
                     sex: "",
-                    work_time: "",
-                    work_day: "",
-                    salary: "",
+                    work_time: null,
+                    work_day: null,
+                    salary: null,
                     type: "",
                 }
             }

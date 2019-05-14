@@ -65,6 +65,10 @@ export default {
         position: relative;
         left: 250px;
     }
+
+    table{
+        margin-bottom: 30px;
+    }
     table td{
         padding-right: 10px;
         padding-left: 10px;

@@ -95,6 +95,9 @@ export default {
 .modal-body {
     margin: 20px 0;
 }
+.modal-body label{
+    margin-right: 10px;
+}
 
 .modal-default-button {
     float: right;

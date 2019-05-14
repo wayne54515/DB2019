@@ -133,7 +133,7 @@ export default {
                 .then((response) => {
                     console.log('done');
                     self.showFoodModal = false;
-                    self.getFoodList()
+                    self.getFoodList();
                 })
                 .catch((response) => {
                     console.log(response);
@@ -181,7 +181,7 @@ export default {
                 this.food = {
                     id: "",
                     name: "",
-                    price: "",
+                    price: 0,
                     type: "",
                 }
             }

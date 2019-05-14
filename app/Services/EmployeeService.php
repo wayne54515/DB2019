@@ -20,13 +20,18 @@ class EmployeeService
         return $this->employee->all();
     }
 
+    public function getEmployeeById($id){
+        return $this->employee->find($id);
+    }
+
     public function insertEmployee($input_data){
-        $this->employee->create($input_data);
+        $employee = $input_data['employee'];
+        $this->employee->create($employee);
     }
 
     public function updateEmployee($id, $input_data){
         $employee = $input_data['employee'];
-        $this->employee->find($id)->update($food);
+        $this->employee->find($id)->update($employee);
     }
 
     public function deleteEmployee($id){

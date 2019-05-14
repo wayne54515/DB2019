@@ -26,8 +26,13 @@ class FoodService
         
     }
 
+    public function getFoodById($id){
+        return $this->food->find($id);
+    }
+
     public function insertFood($input_data){
-        $this->food->create($input_data);
+        $food = $input_data['food'];
+        $this->food->create($food);
     }
 
     public function updateFood($id, $input_data){
