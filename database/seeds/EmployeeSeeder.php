@@ -11,6 +11,8 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $path = 'database/seeds/sql_data/fake_employee.sql';
+        DB::unprepared(file_get_contents($path));
+        $this->command->info('employee table seeded!');
     }
 }

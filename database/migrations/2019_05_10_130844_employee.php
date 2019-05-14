@@ -15,9 +15,10 @@ class Employee extends Migration
         Schema::create('employee', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30)->comment("員工姓名");
-            $table->string('sex', 5)->comment("性別");
-            $table->string('birthday', 30)->comment("生日");
-            $table->integer('work_time')->comment("一月工作時長");
+            $table->string('sex', 10)->comment("性別");
+            $table->integer('work_time')->unsigned()->comment("一日工作時長");
+            $table->integer('work_day')->unsigned()->comment("工作日數");
+            $table->integer('salary')->unsigned()->comment("時薪");
             $table->string('type', 30)->comment("員工種類");
         });
     }

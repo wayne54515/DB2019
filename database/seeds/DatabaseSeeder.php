@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminAccountSeeder::class);
         $this->call(FoodSeeder::class);
         $this->call(RankSeeder::class);
+        $this->call(EmployeeSeeder::class);
 
     }
 }
