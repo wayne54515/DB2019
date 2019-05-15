@@ -38,6 +38,15 @@ class RankService
         return $avg_rank;
     }
 
+    public function getRankByUserId($user_id){
+        $temp = $this->rank->select('food_id', 'rank')->where("user_id", "=", $user_id)->get();
+        $rank = [];
+        foreach($temp as $value){
+            $rank[$value['food_id']] = $value['rank'];
+        }
+        return $rank;
+    }
+
     public function insertRank($input_data){
         $rank = $input_data['rank'];
         $this->rank->create($rank);

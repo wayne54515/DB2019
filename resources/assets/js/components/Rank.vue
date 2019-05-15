@@ -22,7 +22,12 @@
                         <label>{{ food.price }}元</label>
                     </div>
                     <div class="food_rank"><label>評分 : {{ food_rank[food.id] }}/10</label></div>
-                    <div class="food_rating" v-if="user_id != 0">
+                    <div class="food_rating" v-if="(user_id != 0) & (user_food_rank[food.id] != null)">
+                        <label>你的評分 : {{ user_food_rank[food.id] }}/10</label>
+                        <button value="edit" @click="editRankShow()">重新評分</button>
+                        <button value="delete" @click="delRankShow()">刪除評分</button>
+                    </div>
+                    <div class="food_rating" v-if="(user_id != 0) & (user_food_rank[food.id] == null)">
                         <input type="number" min="1" max="10" v-model="user_food_rank[food.id]"/>
                         <button value="send" @click="sendRank(food.id, user_food_rank[food.id])">寫評分</button>
                     </div>
@@ -77,6 +82,7 @@ export default {
             this.getFoodMenu();
             this.foodFilter();
             this.getFoodRank();
+            this.getUserRating();
         },
 
         getIconUrl: function(i){
@@ -120,6 +126,18 @@ export default {
             this.axios.get('/rank')
                 .then(function(response){
                     self.food_rank = response.data.rank;
+                    console.log("success");
+                })
+                .catch(function(response){
+                    console.log(response);
+                })
+        },
+
+        getUserRating: function(){
+            let self = this;
+            this.axios.get('/rank/' + this.user_id)
+                .then(function(response){
+                    self.user_food_rank = response.data.rank;
                     console.log("success");
                 })
                 .catch(function(response){

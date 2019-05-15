@@ -38,7 +38,7 @@ Route::resource('employee', 'EmployeeController', ['only' => [
 ]]);
 
 Route::resource('rank', 'RankController', ['only' => [
-    'index', 'edit', 'update', 'store', 'destroy'
+    'index', 'edit', 'update', 'store', 'destroy', 'show'
 ]]);
 
 Route::resource('table', 'TableController', ['only' => [

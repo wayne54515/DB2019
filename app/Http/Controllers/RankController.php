@@ -69,12 +69,11 @@ class RankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_id)
     {
-        $data = $request->all();
-        $rank_id = $this->rankService->getIdByName($data['food_name']);
+        $rank = $this->rankService->getRankByUserId($user_id);
 
-        return response()->json(['rank_id' => $rank_id]);
+        return response()->json(['rank' => $rank]);
     }
 
     /**
