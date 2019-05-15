@@ -17,6 +17,10 @@
             <li v-for="food in page_data" :key="food.id">
                 <div class="food_block">
                     <img :src="getIconUrl(food.id)" :style="'width:200px; height:200px;'">
+                    <div class="food_info">
+                        <label>{{ food.name }}</label>
+                        <label>{{ food.price }}元</label>
+                    </div>
                     <input type="number" min="0" max="99" v-model="food_num[food.id]"/>
                     <button value="send" @click="addTrade(food.id, food.name, food_num[food.id])">加入交易</button>
                 </div>
@@ -128,9 +132,9 @@ export default {
             let self = this;
             for(var i=0 ; i<self.trade_list.length ; i++){
                 this.new_trade = {
-                food_id: self.trade_list[i].food_id,
-                table_id: self.table_id,
-                number: self.trade_list[i].number,
+                    food_id: self.trade_list[i].food_id,
+                    table_id: self.table_id,
+                    number: self.trade_list[i].number,
                 }
                 this.axios.post('/trade', {
                     trade: this.new_trade
@@ -179,6 +183,16 @@ export default {
     }
     .menu{
         margin-top: 20px;
+    }
+    .menu label{
+        margin: 5px;
+        display: inline;
+        font-size: 20px;
+    }
+    .food_info{
+        border-bottom: 2px solid black;
+        margin-bottom: 5px;
+        display: block;
     }
 
     .chk{

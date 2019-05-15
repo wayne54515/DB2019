@@ -10,10 +10,6 @@ class Food extends BaseModel
     protected $fillable = [
         'id', 'name', 'price', 'type'
     ];
-    //example
-    // protected $fillable = [
-    //     'id', 'name', 'attribute'
-    // ];
 
     // /**
     //  * 取得  模型
