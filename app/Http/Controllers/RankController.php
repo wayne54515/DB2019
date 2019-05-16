@@ -98,7 +98,7 @@ class RankController extends Controller
     public function update(Request $request, $id)
     {
         $input_data = $request->all();
-        $this->rankService->updateRank($id, $input_data);
+        $this->rankService->updateRank($input_data);
 
         return response()->json(['status' => 'ok'], 200, $this->header);
     }
@@ -109,10 +109,11 @@ class RankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $this->rankService->deleteRank($id);
+        $input_data = $request->all();
+        $this->rankService->deleteRank($input_data);
 
-        return response()->json(['status' => 'ok'], 200, $this->header);
+        return response()->json(['status' => 'OK'], 200, $this->header);
     }
 }

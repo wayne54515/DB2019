@@ -52,12 +52,20 @@ class RankService
         $this->rank->create($rank);
     }
 
-    public function updateRank($id, $input_data){
+    public function updateRank($input_data){
         $rank = $input_data['rank'];
-        $this->rank->find($id)->update($rank);
+        $food_id = $rank['food_id'];
+        $user_id = $rank['user_id'];
+        $this->rank->where("food_id", "=", $food_id)
+                ->where("user_id", "=", $user_id)
+                ->update($rank);
     }
 
-    public function deleteRank($id){
-        $this->rank->destroy($id);
+    public function deleteRank($input_data){
+        $food_id = $input_data['food_id'];
+        $user_id = intval($input_data['user_id']);
+        $this->rank->where("food_id", "=", $food_id)
+                ->where("user_id", "=", $user_id)
+                ->delete();
     }
 }

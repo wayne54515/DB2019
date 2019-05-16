@@ -48,3 +48,5 @@ Route::resource('table', 'TableController', ['only' => [
 Route::resource('trade', 'TradeController', ['only' => [
     'index', 'edit', 'update', 'store', 'destroy'
 ]]);
+
+
