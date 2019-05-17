@@ -196,6 +196,7 @@ export default {
                 this.user_food_rating[food_id] = null;
                 self.getFoodRank();
                 self.getUserRating();
+                self.updateRankCSV();
                 console.log(response);
                 console.log("delete");
             }).catch((response) => {
@@ -227,6 +228,7 @@ export default {
                 console.log('done');
                 self.getFoodRank();
                 self.getUserRating();
+                self.updateRankCSV();
                 self.showRankModal = false;
             }).catch((response) => {
                 console.log(response);
@@ -249,10 +251,11 @@ export default {
                 rank: rank,
             }
             this.axios.post('/rank', {
-                rank: this.new_rank
+                rank: this.new_rank,
             })
             .then(function(response){
                 self.getUserRating();
+                self.updateRankCSV();
                 console.log(response);
                 console.log("完成");
             })
@@ -278,7 +281,7 @@ export default {
             let self = this;
             this.axios.get('/rmd')
                 .then(function(response){
-                    console.log(success);
+                    console.log(response);
                 })
                 .catch(function(response){
                     console.log(response);
