@@ -68,4 +68,8 @@ class RankService
                 ->where("user_id", "=", $user_id)
                 ->delete();
     }
+
+    public function getUserRankNum($user_id){
+        return $this->rank->where("user_id", "=", $user_id)->count();
+    }
 }

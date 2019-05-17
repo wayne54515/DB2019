@@ -49,4 +49,8 @@ Route::resource('trade', 'TradeController', ['only' => [
     'index', 'edit', 'update', 'store', 'destroy'
 ]]);
 
+Route::resource('rmd', 'RmdController', ['only' => [
+    'show', 'index'
+]]);
+
 

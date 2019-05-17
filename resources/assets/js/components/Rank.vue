@@ -8,7 +8,7 @@
             <!-- <input type="radio" v-model="food_type_selected" value="set" /><label>套餐</label> -->
         </div>
         <div class="rmd_menu" v-if="user_id != 0">
-            <input type="checkbox" id="chk_rmd" class="chk" @click="rmd_model_show = true;"/>
+            <input type="checkbox" id="chk_rmd" class="chk" @click="wait_modal_show = true;getRmdData(food_menu);"/>
             <label for="chk_rmd">推薦</label>
         </div>
     </div>
@@ -36,25 +36,32 @@
         </ul>
     </div>
     <!-- 推薦列表 -->
-    <modal v-if="rmd_model_show" @close="rmd_model_show = false" >
+    <modal v-if="rmd_modal_show" @close="rmd_modal_show = false" >
         <div slot="header">
             <h3 >推薦食物</h3>
         </div>
         <div slot="body">
-            <form>
-                <ul class="rmd_content">
-                    <li v-for="(rmd,rmd_index) in rmd_list" :key="rmd.id">
-                        <label>{{ (rmd_index+1) }}</label>
-                        <label>{{rmd.food_name}}</label>
-                        <label>{{rmd.rank}}</label>
-                    </li>
-                </ul>
-            </form>
+            <h4 style="text-align: center; font-weight: bold;" v-if="rmd_list.length == 0">你尚未評分過餐點故無法推薦</h4>
+            <ul class="rmd_content" v-else>
+                <li v-for="(rmd,rmd_index) in rmd_list" :key="rmd.id">
+                    <label>{{ (rmd_index+1) }}.</label>
+                    <label>{{ food_menu[rmd.food_id-1].name }} </label>
+                    <label>推薦分數 :{{ rmd.rank }}</label>
+                </li>
+            </ul>
         </div>
 
         <div slot="footer">
-            <button class="modal-default-button" @click="rmd_model_show = false">關閉視窗</button>
+            <button class="modal-default-button" @click="rmd_modal_show = false">關閉視窗</button>
         </div>
+    </modal>
+    <!-- 等待列表 -->
+    <modal v-if="wait_modal_show" @close="wait_modal_show = false" >
+        <div slot="header"></div>
+        <div slot="body">
+            <h1 style="text-align: center;">等待推薦</h1>
+        </div>
+        <div slot="footer"></div>
     </modal>
     <!-- 刪除/編輯評分 -->
     <modal v-if="showRankModal" @close="showRankModal = false">
@@ -98,11 +105,12 @@ export default {
             food_rank: [],
             user_food_rank: [],
             user_food_rating: [],
-            rmd_model_show: false,
+            rmd_modal_show: false,
             showRankModal: false,
             modalState:"",
             food: [],
             rank: null,
+            wait_modal_show: false,
         }
     },
 
@@ -250,8 +258,31 @@ export default {
             })
             .catch(function(response){
                 console.log(response);
-            });
-            
+            });      
+        },
+
+        getRmdData: function(food){
+            let self = this;
+            this.axios.get('/rmd/' + this.user_id)
+                .then(function(response){
+                    self.rmd_list = response.data.rmd;
+                    self.wait_modal_show = false;
+                    self.rmd_modal_show = true;
+                    console.log(response);
+                })
+                .catch(function(response){
+                    console.log(response);
+                })
+        },
+        updateRankCSV: function(){
+            let self = this;
+            this.axios.get('/rmd')
+                .then(function(response){
+                    console.log(success);
+                })
+                .catch(function(response){
+                    console.log(response);
+                })
         }
     },
 
