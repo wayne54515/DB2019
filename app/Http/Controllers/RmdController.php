@@ -55,7 +55,7 @@ class RmdController extends Controller
         if($user_rank_num == 0)
             return response()->json(['rmd' => []], 200, $this->header, JSON_UNESCAPED_UNICODE);
         else{
-            $process = new Process("python py/getRankModel.py $user_id"); 
+            $process = new Process("python py/getRmd.py $user_id"); 
             $process->run(); 
 
             // executes after the command finishes 
